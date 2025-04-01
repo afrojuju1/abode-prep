@@ -2,7 +2,7 @@ import { Job, Worker } from "bullmq";
 import { prisma } from "../lib/prisma";
 import { connection } from "../queues/connection";
 
-const worker = new Worker(
+export const worker = new Worker(
   "address-lookup",
   async (job: Job) => {
     const { address, id } = job.data;

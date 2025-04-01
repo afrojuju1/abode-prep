@@ -1,5 +1,7 @@
 # 🏠 Abode Prep Stack
 
+![Abode Demo Screenshot](abode-demo.png)
+
 This project is a full-stack boilerplate for a modern property data lookup and automation service. It's designed for fast prototyping using production-ready technologies like Redis, PostgreSQL, Docker, Prisma, BullMQ, and a modern React + Tailwind frontend.
 
 ---

@@ -1,4 +1,4 @@
-import { runAddressLookupJob } from "./jobs/addressLookupJob";
+import { worker as runAddressLookupJob } from "./jobs/addressLookupJob";
 
 const addressJobQueue: string[] = [];
 
