@@ -54,7 +54,6 @@ This project is a full-stack boilerplate for a modern property data lookup and a
 
 - Docker + Docker Compose
 - Node.js 18+
-- (Optional) `pnpm` or `bun` for faster local installs
 
 ### Local Dev Setup
 
@@ -78,6 +77,27 @@ npm run dev
 - React app that submits a job and polls for its result
 - Dev-time hot reload for backend via ts-node-dev
 - Docker Compose orchestration across services
+
+---
+
+## 🌟 Feature Enhancements (Planned)
+
+These improvements are planned to elevate this project beyond a simple boilerplate:
+
+- **Frontend Address Validation**  
+  Implement client-side checks to ensure users submit well-formed, complete street addresses.
+
+- **Backend Address Validation**  
+  Add server-side validation and normalization to catch malformed or unsupported addresses before job processing.
+
+- **Frontend Address Autocomplete**  
+  Integrate Google Places or a free autocomplete API to assist users with typing and selecting valid addresses faster.
+
+- **Backend Real-Time HCAD Scraper**  
+  Replace the mock result generator with a real web scraper or API integration that fetches live appraisal data from the HCAD website.
+
+- **Admin Dashboard for Lookup Monitoring**  
+  Build a secure admin UI to view, filter, and debug address lookup history — including job statuses and errors.
 
 ---
 
