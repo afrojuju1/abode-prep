@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AddressLookup {
+  id              String   @id @default(uuid())
+  address         String
+  ownerName       String?   // e.g., "John Smith"
+  mailingAddress  String?   // e.g., "1234 PO Box..."
+  value2024       String?   // e.g., "$435,000"
+  houseSqft       Int?      // e.g., 2120
+  lotSqft         Int?      // e.g., 7400
+  county          String?
+  createdAt       DateTime @default(now())
+}

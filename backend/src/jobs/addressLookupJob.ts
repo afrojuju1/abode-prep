@@ -1,4 +1,5 @@
 import { Job, Worker } from "bullmq";
+import { prisma } from "../lib/prisma";
 import { connection } from "../queues/connection";
 
 const worker = new Worker(
@@ -10,14 +11,26 @@ const worker = new Worker(
     // Simulated lookup delay
     await new Promise((res) => setTimeout(res, 1000));
 
-    // Fake result
+    // fake result for now
     const result = {
-      owner: "Jane Doe",
-      value: "$425,000",
+      ownerName: "Jane Doe",
+      mailingAddress: "PO Box 123, Houston, TX",
+      value2024: "$425,000",
+      houseSqft: 2100,
+      lotSqft: 7500,
       county: "Harris",
     };
 
-    console.log(`✅ Lookup complete for ${address}:`, result);
+    // todo: crawl for the real result
+
+    await prisma.addressLookup.create({
+      data: {
+        address,
+        ...result,
+      },
+    });
+
+    console.log(`✅ Lookup complete and saved for ${address}:`, result);
   },
   { connection }
 );
