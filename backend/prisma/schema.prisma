@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-1.1.x"]
 }
 
 datasource db {
@@ -22,5 +23,6 @@ model AddressLookup {
   houseSqft       Int?      // e.g., 2120
   lotSqft         Int?      // e.g., 7400
   county          String?
+  status String @default("pending") // 'pending' | 'completed' | 'failed'
   createdAt       DateTime @default(now())
 }

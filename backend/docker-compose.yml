@@ -21,5 +21,35 @@ services:
     ports:
       - "6379:6379"
 
+  worker:
+    build:
+      context: .
+    container_name: abode_worker
+    restart: unless-stopped
+    command: npx ts-node src/jobs/addressLookupJob.ts
+    depends_on:
+      - redis
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/abode
+      - REDIS_HOST=redis
+
+  backend:
+    build:
+      context: .
+    container_name: abode_backend
+    restart: unless-stopped
+    command: npm run dev
+    ports:
+      - "3001:3001"
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - postgres
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/abode
+      - REDIS_HOST=redis
+
 volumes:
   pgdata:

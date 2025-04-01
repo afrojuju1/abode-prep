@@ -5,13 +5,11 @@ import { connection } from "../queues/connection";
 const worker = new Worker(
   "address-lookup",
   async (job: Job) => {
-    const { address } = job.data;
+    const { address, id } = job.data;
     console.log(`🔍 Looking up HCAD info for: ${address}`);
 
-    // Simulated lookup delay
     await new Promise((res) => setTimeout(res, 1000));
 
-    // fake result for now
     const result = {
       ownerName: "Jane Doe",
       mailingAddress: "PO Box 123, Houston, TX",
@@ -21,16 +19,15 @@ const worker = new Worker(
       county: "Harris",
     };
 
-    // todo: crawl for the real result
-
-    await prisma.addressLookup.create({
+    await prisma.addressLookup.update({
+      where: { id },
       data: {
-        address,
         ...result,
+        status: "completed",
       },
     });
 
-    console.log(`✅ Lookup complete and saved for ${address}:`, result);
+    console.log(`✅ Lookup complete and saved for ${address}`);
   },
   { connection }
 );
